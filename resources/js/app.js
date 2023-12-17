@@ -9,6 +9,9 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import User from './Helper/User';
 window.User = User
 
+import Notification from './Helper/Notification';
+window.Notification = Notification
+
 const app = createApp({
     el: "#app",
 });
