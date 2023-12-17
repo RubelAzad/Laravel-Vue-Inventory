@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('backend/img/logo/logo.png')}}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Azad - Dashboard</title>
 
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
@@ -24,14 +24,14 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <nav id="sidebar" v-show="$route.path === '/login' || $route.path === '/signup' || $route.path === '/forget-password' ? false : true" style="display:none;">
+    <nav id="sidebar" v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true" style="display:none;">
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      
+      <router-link class="sidebar-brand d-flex align-items-center justify-content-center" to="/home">
         <div class="sidebar-brand-icon">
-          <img src="img/logo/logo2.png">
+          <img src="{{asset('backend/img/logo/logo.png')}}">
         </div>
-        <div class="sidebar-brand-text mx-3">IMS</div>
-      </a>
+      </router-link>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <router-link class="nav-link" to="/home">
@@ -136,7 +136,7 @@
       <div id="content">
 
         <!-- TopBar -->
-        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" v-show="$route.path === '/login' || $route.path === '/signup' || $route.path === '/forget-password' ? false : true" style="display:none;">
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true" style="display:none;">
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>

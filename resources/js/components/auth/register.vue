@@ -38,7 +38,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                      <router-link to="/login" class="font-weight-bold small">Already have an account?</router-link>
+                      <router-link to="/" class="font-weight-bold small">Already have an account?</router-link>
                     </div>
                   </div>
                 </div>
@@ -52,6 +52,7 @@
 <script type="text/javascript">
 import axios from "axios";
 import User from "../../Helper/User";
+import Notification from "../../Helper/Notification";
 export default {
     created(){
         if(User.loggedIn()){
@@ -76,19 +77,7 @@ export default {
             axios.post("/api/auth/register", this.form)
                 .then((res) => {
                     User.responseAfterLogin(res);
-                    this.$swal({
-                        icon:'success',
-                        title:'Register in successfully',
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        onOpen: (toast) =>{
-                            toast.addEventListener('mouseenter',Swal.stopTimer)
-                            toast.addEventListener('mouseleave',Swal.resumeTimer)
-                        }
-                    });
+                    Notification.success('Registration in successfully');
                     this.$router.push({ name: 'home' });
                 })
                 .catch((error) => {
