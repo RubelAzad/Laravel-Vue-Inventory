@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <div class="row">
@@ -12,10 +13,10 @@
                 <div class="col-lg-12">
                   <div class="login-form">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Add Employee</h1>
+                      <h1 class="h4 text-gray-900 mb-4">Edit Employee</h1>
                     </div>
                     <div class="card-body">
-                    <form class="user" @submit.prevent="employeeInsert" enctype="multipart/form-data">
+                    <form class="user" @submit.prevent="employeeUpdate" enctype="multipart/form-data">
                       <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
@@ -93,7 +94,7 @@
                             </div>
                             <div class="col-md-6">
                                 <img
-                                    :src="form.photo"
+                                    :src="form.newPhoto"
                                     style="
                                         height: 40px;
                                         width: 40px;
@@ -106,7 +107,7 @@
 
 
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-block">Update</button>
                       </div>
                     </form>
                 </div>
@@ -133,46 +134,53 @@ export default {
     data() {
         return {
             form: {
-                name: null,
-                email: null,
-                address: null,
-                salary: null,
-                address: null,
-                joining_date: null,
-                nid: null,
-                phone: null,
-                photo: null,
+                name: '',
+                email: '',
+                address: '',
+                salary: '',
+                address: '',
+                joining_date: '',
+                nid: '',
+                phone: '',
+                photo: '',
+                newPhoto: '',
             },
             errors:{
 
             }
         };
     },
+    created(){
+        let id = this.$route.params.id
+        axios.get('/api/employee/'+id)
+        .then(({data}) => (this.form =data))
+        .catch()
+    },
+
     methods: {
         onFileSelected(event){
             let file = event.target.files[0];
-            if(file.size > 1048770){
-                Notification.warning('Image size Less then 1 MB');
+            if (file.size > 1048770) {
+            Notification.image_validation()
             }else{
-                let file = event.target.files[0];
-                reader.onload =event =>{
-                    this.form.photo = event.target.result
-                    console.log(event.target.result);
-                }
-                reader.readAsDataURL(file);
+            let reader = new FileReader();
+            reader.onload = event =>{
+                this.form.newPhoto = event.target.result
 
+            };
+            reader.readAsDataURL(file);
             }
+
         },
-        employeeInsert() {
-            axios.post("/api/employee", this.form)
-                .then(() => {
-                    Notification.success('Employee Save in successfully');
-                    this.$router.push({ name: 'all-employee' });
-                })
-                .catch((error) => {
-                    this.errors = error.response.data.errors;
-                });
-        },
+        employeeUpdate(){
+            let id = this.$route.params.id
+            axios.patch('/api/employee/'+id,this.form)
+            .then(() => {
+                this.$router.push({ name: 'all-employee'})
+                Notification.success('Updated Successfully')
+            })
+            .catch(error =>this.errors = error.response.data.errors)
+            },
 
 
     },
