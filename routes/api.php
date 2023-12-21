@@ -21,5 +21,14 @@ Route::group([
 });
 //Route::apiResource('/employee','Api\EmployeeController');
 
+//employee
 Route::apiResource('/employee','App\Http\Controllers\Api\EmployeeController');
+//branch
+Route::apiResource('/branch','App\Http\Controllers\Api\BranchController');
+//department
+Route::apiResource('/department','App\Http\Controllers\Api\DepartmentController');
+//designation
+Route::apiResource('/designation','App\Http\Controllers\Api\DesignationController');
+//shift
+Route::apiResource('/shift','App\Http\Controllers\Api\ShiftController');
 

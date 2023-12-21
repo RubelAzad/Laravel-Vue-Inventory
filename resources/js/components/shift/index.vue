@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <router-link to="/add-employee" class="btn btn-primary">Add Employee</router-link>
+            <router-link to="/add-shift" class="btn btn-primary">Add shift</router-link>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -31,31 +31,24 @@
                   <table class="table align-items-center table-flush" id="dataTable">
                     <thead class="thead-light">
                       <tr>
-                        <th>Name</th>
-                        <th>Photo</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Joining Date</th>
-                        <th>Salary</th>
+                        <th>id</th>
+                        <th>shift Name</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
 
-                      <tr v-for="employee in paginatedEmployees" :key="employee.id">
-                        <td>{{ employee.name }}</td>
-                        <td><img :src="employee.photo" alt="" id="em_photo"></td>
-                        <td>{{ employee.phone }}</td>
-                        <td>{{ employee.email }}</td>
-                        <td>{{ employee.joining_date }}</td>
-                        <td>{{ employee.salary }}</td>
+                      <tr v-for="shift in paginatedshifts" :key="shift.id">
+                        <td>{{ shift.id }}</td>
+                        <td>{{ shift.shift_name }}</td>
+
                         <td>
                             <router-link
-                            :to="{name:'edit-employee',params:{id:employee.id}}"
+                            :to="{name:'edit-shift',params:{id:shift.id}}"
                              class="btn btn-sm btn-primary mr-2"
                              >Edit</router-link
                          > |
-                            <a @click="deleteEmployee(employee.id)" class="btn btn-sm btn-danger">Delete</a>
+                            <a @click="deleteshift(shift.id)" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                       </tr>
 
@@ -104,11 +97,11 @@ export default {
         if(!User.loggedIn()){
             this.$router.push({name:'/'})
         }
-        this.allEmployee();
+        this.allshift();
     },
     data() {
         return {
-            employees: [],
+            shifts: [],
             searchTerm: '',
             currentPage: 1,
             pageSize: 5,
@@ -116,29 +109,27 @@ export default {
         };
     },
     computed: {
-        filteredEmployees() {
+        filteredshifts() {
             const searchTermLower = this.searchTerm.toLowerCase();
-            return this.employees.filter(employee => {
+            return this.shifts.filter(shift => {
                 return (
-                    (employee.name && employee.name.toLowerCase().includes(searchTermLower)) ||
-                    (employee.phone && employee.phone.toLowerCase().includes(searchTermLower))
+                    (shift.shift_name && shift.shift_name.toLowerCase().includes(searchTermLower))
                 );
             });
         },
-        paginatedEmployees() {
+        paginatedshifts() {
             const startIndex = (this.currentPage - 1) * this.pageSize;
-            return this.filteredEmployees.slice(startIndex, startIndex + this.pageSize);
+            return this.filteredshifts.slice(startIndex, startIndex + this.pageSize);
         },
         totalPages() {
-            return Math.ceil(this.filteredEmployees.length / this.pageSize);
+            return Math.ceil(this.filteredshifts.length / this.pageSize);
         },
     },
     methods: {
-        allEmployee() {
-            axios.get('/api/employee')
+        allshift() {
+            axios.get('/api/shift')
                 .then(({ data }) => {
-                    console.log(data.employees);
-                    this.employees = data.employees;
+                    this.shifts = data;
                     this.totalItems = data.length;
                 })
                 .catch((error) => {
@@ -166,18 +157,18 @@ export default {
                 this.currentPage = 1; // Reset to the first page when changing page size
             }
         },
-        deleteEmployee(id){
+        deleteshift(id){
             Notification.delete()
              .then((result) => {
               if (result.value) {
-                axios.delete('/api/employee/'+id)
+                axios.delete('/api/shift/'+id)
                .then(() => {
-                this.employees = this.employees.filter(employee => {
-                  return employee.id != id
+                this.shifts = this.shifts.filter(shift => {
+                  return shift.id != id
                 })
                })
                .catch(() => {
-                this.$router.push({name: 'employee'})
+                this.$router.push({name: 'shift'})
                })
                Notification.deleteMessage()
               }

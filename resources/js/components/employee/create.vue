@@ -66,8 +66,46 @@
                                 <input type="text" class="form-control" id="phoneNumber" placeholder="Enter Your Phone Number" v-model="form.phone">
                                 <small class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</small>
                             </div>
+
+                            <div class="col-md-6">
+                                <label for="exampleFormControlSelect1">Branch Name</label>
+                                <select class="form-control" id="exampleFormControlSelect1" v-model="form.branch_id">
+                                    <option :value="branch.id" v-for="branch in branches" :key="branch.id">{{ branch.branch_name }}</option>
+                                </select>
+
+                            </div>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label>Designation Name</label>
+                                <select class="form-control" id="exampleFormControlSelect1" v-model="form.designation_id">
+                                    <option :value="designation.id" v-for="designation in designations" :key="designation.id">{{ designation.designation_name }}</option>
+                                    <small class="text-danger" v-if="errors.designation_id">{{ errors.designation_id[0] }}</small>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Department Name</label>
+                                <select class="form-control" id="exampleFormControlSelect1" v-model="form.department_id">
+                                    <option :value="department.id" v-for="department in departments" :key="department.id">{{ department.department_name }}</option>
+                                    <small class="text-danger" v-if="errors.department_id">{{ errors.department_id[0] }}</small>
+                                </select>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label>Shift Name</label>
+                                <select class="form-control" id="exampleFormControlSelect1" v-model="form.shift_id">
+                                    <option :value="shift.id" v-for="shift in shifts" :key="shift.id">{{ shift.shift_name }}</option>
+                                    <small class="text-danger" v-if="errors.shift_id">{{ errors.shift_id[0] }}</small>
+                                </select>
+                            </div>
+                        </div>
+                      </div>
+
 
 
                       <div class="form-group">
@@ -129,9 +167,27 @@ export default {
         if(!User.loggedIn()){
             this.$router.push({name:'/'})
         }
+        axios.get('/api/branch/').then(({data})=>(this.branches=data));
+        axios.get('/api/department/').then(({data})=>(this.departments=data));
+        axios.get('/api/designation/').then(({data})=>(this.designations=data));
+        axios.get('/api/shift/').then(({data})=>(this.shifts=data));
+    },
+    computed: {
+
+        paginatedEmployees() {
+            const startIndex = (this.currentPage - 1) * this.pageSize;
+            return this.filteredEmployees.slice(startIndex, startIndex + this.pageSize);
+        },
+        totalPages() {
+            return Math.ceil(this.filteredEmployees.length / this.pageSize);
+        },
     },
     data() {
         return {
+            branches:[],
+            departments:[],
+            designations:[],
+            shifts:[],
             form: {
                 name: null,
                 email: null,
@@ -142,6 +198,10 @@ export default {
                 nid: null,
                 phone: null,
                 photo: null,
+                branch_id:null,
+                department_id:null,
+                designation_id:null,
+                shift_id:null,
             },
             errors:{
 
@@ -166,6 +226,7 @@ export default {
         employeeInsert() {
             axios.post("/api/employee", this.form)
                 .then(() => {
+
                     Notification.success('Employee Save in successfully');
                     this.$router.push({ name: 'all-employee' });
                 })

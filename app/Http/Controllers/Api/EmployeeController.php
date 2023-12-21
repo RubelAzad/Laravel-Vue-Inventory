@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -11,7 +12,12 @@ class EmployeeController extends Controller
 {
     public function index(){
         $employees = Employee::all();
-        return response()->json($employees);
+        $branches = Branch::all();
+
+        return response()->json([
+            'employees'=>$employees,
+            'branches'=>$branches
+        ]);
     }
     public function store(Request $request){
         $validateData = $request->validate([
@@ -47,9 +53,6 @@ class EmployeeController extends Controller
             $employee->updated_by = $request->updated_by;
             $employee->photo = $image_url;
             $employee->save();
-
-
-
         }else{
            $employee = new Employee;
            $employee->name = $request->name;
