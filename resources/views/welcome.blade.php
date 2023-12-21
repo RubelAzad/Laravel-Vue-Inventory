@@ -133,8 +133,24 @@
         <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Supplier</h6>
-            <router-link class="collapse-item" to="">All Supplier</router-link>
-            <router-link class="collapse-item" to="">Add Supplier</router-link>
+            <router-link class="collapse-item" to="all-supplier">All Supplier</router-link>
+            <router-link class="collapse-item" to="add-supplier">Add Supplier</router-link>
+          </div>
+        </div>
+      </li>
+       {{-- Supplier Menu --}}
+       {{-- Supplier Menu --}}
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category"
+          aria-expanded="true" aria-controls="category">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Category</span>
+        </a>
+        <div id="category" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Category</h6>
+            <router-link class="collapse-item" to="all-category">All Category</router-link>
+            <router-link class="collapse-item" to="add-category">Add Category</router-link>
           </div>
         </div>
       </li>

@@ -24,10 +24,18 @@ import EditDesignationComponent from "./components/designation/edit.vue";
 import AddBranchComponent from "./components/branch/create.vue";
 import ListBranchComponent from "./components/branch/index.vue";
 import EditBranchComponent from "./components/branch/edit.vue";
-//designation component
+//Shift component
 import AddShiftComponent from "./components/shift/create.vue";
 import ListShiftComponent from "./components/shift/index.vue";
 import EditShiftComponent from "./components/shift/edit.vue";
+//Supplier component
+import AddSupplierComponent from "./components/supplier/create.vue";
+import ListSupplierComponent from "./components/supplier/index.vue";
+import EditSupplierComponent from "./components/supplier/edit.vue";
+//Category component
+import AddCategoryComponent from "./components/category/create.vue";
+import ListCategoryComponent from "./components/category/index.vue";
+import EditCategoryComponent from "./components/category/edit.vue";
 
 
 
@@ -62,5 +70,15 @@ export const routes = [
     { path: '/add-shift', component:AddShiftComponent,name:'add-shift' },
     { path: '/all-shift', component:ListShiftComponent,name:'all-shift' },
     { path: '/edit-shift/:id', component:EditShiftComponent,name:'edit-shift' },
+
+    //Supplier
+    { path: '/add-supplier', component:AddSupplierComponent,name:'add-supplier' },
+    { path: '/all-supplier', component:ListSupplierComponent,name:'all-supplier' },
+    { path: '/edit-supplier/:id', component:EditSupplierComponent,name:'edit-supplier' },
+
+    //Category
+    { path: '/add-category', component:AddCategoryComponent,name:'add-category' },
+    { path: '/all-category', component:ListCategoryComponent,name:'all-category' },
+    { path: '/edit-category/:id', component:EditCategoryComponent,name:'edit-category' },
 
   ]

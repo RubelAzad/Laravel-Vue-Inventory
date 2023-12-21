@@ -15,8 +15,7 @@ class EmployeeController extends Controller
         $branches = Branch::all();
 
         return response()->json([
-            'employees'=>$employees,
-            'branches'=>$branches
+            'employees'=>$employees
         ]);
     }
     public function store(Request $request){
@@ -53,6 +52,9 @@ class EmployeeController extends Controller
             $employee->updated_by = $request->updated_by;
             $employee->photo = $image_url;
             $employee->save();
+
+
+
         }else{
            $employee = new Employee;
            $employee->name = $request->name;

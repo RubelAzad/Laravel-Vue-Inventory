@@ -32,3 +32,8 @@ Route::apiResource('/designation','App\Http\Controllers\Api\DesignationControlle
 //shift
 Route::apiResource('/shift','App\Http\Controllers\Api\ShiftController');
 
+//Supplier
+Route::apiResource('/supplier','App\Http\Controllers\Api\SupplierController');
+//Category
+Route::apiResource('/category','App\Http\Controllers\Api\CategoryController');
+
