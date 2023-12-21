@@ -197,7 +197,6 @@ export default {
                 joining_date: null,
                 nid: null,
                 phone: null,
-                photo: null,
                 branch_id:null,
                 department_id:null,
                 designation_id:null,
