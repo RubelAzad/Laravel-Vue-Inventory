@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <router-link to="/add-employee" class="btn btn-primary">Add Employee</router-link>
+            <router-link to="/add-designation" class="btn btn-primary">Add designation</router-link>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -31,31 +31,24 @@
                   <table class="table align-items-center table-flush" id="dataTable">
                     <thead class="thead-light">
                       <tr>
-                        <th>Name</th>
-                        <th>Photo</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Joining Date</th>
-                        <th>Salary</th>
+                        <th>id</th>
+                        <th>designation Name</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
 
-                      <tr v-for="employee in paginatedEmployees" :key="employee.id">
-                        <td>{{ employee.name }}</td>
-                        <td><img :src="employee.photo" alt="" id="em_photo"></td>
-                        <td>{{ employee.phone }}</td>
-                        <td>{{ employee.email }}</td>
-                        <td>{{ employee.joining_date }}</td>
-                        <td>{{ employee.salary }}</td>
+                      <tr v-for="designation in paginateddesignations" :key="designation.id">
+                        <td>{{ designation.id }}</td>
+                        <td>{{ designation.designation_name }}</td>
+
                         <td>
                             <router-link
-                            :to="{name:'edit-employee',params:{id:employee.id}}"
+                            :to="{name:'edit-designation',params:{id:designation.id}}"
                              class="btn btn-sm btn-primary mr-2"
                              >Edit</router-link
                          > |
-                            <a @click="deleteEmployee(employee.id)" class="btn btn-sm btn-danger">Delete</a>
+                            <a @click="deletedesignation(designation.id)" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                       </tr>
 
@@ -104,11 +97,11 @@ export default {
         if(!User.loggedIn()){
             this.$router.push({name:'/'})
         }
-        this.allEmployee();
+        this.alldesignation();
     },
     data() {
         return {
-            employees: [],
+            designations: [],
             searchTerm: '',
             currentPage: 1,
             pageSize: 5,
@@ -116,29 +109,27 @@ export default {
         };
     },
     computed: {
-        filteredEmployees() {
+        filtereddesignations() {
             const searchTermLower = this.searchTerm.toLowerCase();
-            return this.employees.filter(employee => {
+            return this.designations.filter(designation => {
                 return (
-                    (employee.name && employee.name.toLowerCase().includes(searchTermLower)) ||
-                    (employee.phone && employee.phone.toLowerCase().includes(searchTermLower))
+                    (designation.designation_name && designation.designation_name.toLowerCase().includes(searchTermLower))
                 );
             });
         },
-        paginatedEmployees() {
+        paginateddesignations() {
             const startIndex = (this.currentPage - 1) * this.pageSize;
-            return this.filteredEmployees.slice(startIndex, startIndex + this.pageSize);
+            return this.filtereddesignations.slice(startIndex, startIndex + this.pageSize);
         },
         totalPages() {
-            return Math.ceil(this.filteredEmployees.length / this.pageSize);
+            return Math.ceil(this.filtereddesignations.length / this.pageSize);
         },
     },
     methods: {
-        allEmployee() {
-            axios.get('/api/employee')
+        alldesignation() {
+            axios.get('/api/designation')
                 .then(({ data }) => {
-                    console.log(data.employees);
-                    this.employees = data.employees;
+                    this.designations = data;
                     this.totalItems = data.length;
                 })
                 .catch((error) => {
@@ -166,18 +157,18 @@ export default {
                 this.currentPage = 1; // Reset to the first page when changing page size
             }
         },
-        deleteEmployee(id){
+        deletedesignation(id){
             Notification.delete()
              .then((result) => {
               if (result.value) {
-                axios.delete('/api/employee/'+id)
+                axios.delete('/api/designation/'+id)
                .then(() => {
-                this.employees = this.employees.filter(employee => {
-                  return employee.id != id
+                this.designations = this.designations.filter(designation => {
+                  return designation.id != id
                 })
                })
                .catch(() => {
-                this.$router.push({name: 'employee'})
+                this.$router.push({name: 'designation'})
                })
                Notification.deleteMessage()
               }

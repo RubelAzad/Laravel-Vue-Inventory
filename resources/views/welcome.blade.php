@@ -26,7 +26,7 @@
     <!-- Sidebar -->
     <nav id="sidebar" v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true" style="display:none;">
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      
+
       <router-link class="sidebar-brand d-flex align-items-center justify-content-center" to="/home">
         <div class="sidebar-brand-icon">
           <img src="{{asset('backend/img/logo/logo.png')}}">
@@ -42,6 +42,70 @@
       <div class="sidebar-heading">
         Menu
       </div>
+      {{-- Department Menu --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#department"
+          aria-expanded="true" aria-controls="department">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Department</span>
+        </a>
+        <div id="department" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Department</h6>
+            <router-link class="collapse-item" to="/all-department">All Department</router-link>
+            <router-link class="collapse-item" to="/add-department">Add Department</router-link>
+          </div>
+        </div>
+      </li>
+      {{-- Department Menu --}}
+      {{-- Designation Menu --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#designation"
+          aria-expanded="true" aria-controls="designation">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Designation</span>
+        </a>
+        <div id="designation" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Designation</h6>
+            <router-link class="collapse-item" to="/all-designation">All Designation</router-link>
+            <router-link class="collapse-item" to="/add-designation">Add Designation</router-link>
+          </div>
+        </div>
+      </li>
+      {{-- Designation Menu --}}
+      {{-- Designation Menu --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#shift"
+          aria-expanded="true" aria-controls="shift">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Shift</span>
+        </a>
+        <div id="shift" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Shift</h6>
+            <router-link class="collapse-item" to="/all-shift">All Shift</router-link>
+            <router-link class="collapse-item" to="/add-shift">Add Shift</router-link>
+          </div>
+        </div>
+      </li>
+      {{-- Designation Menu --}}
+      {{-- Branch Menu --}}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#branch"
+          aria-expanded="true" aria-controls="branch">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Branch</span>
+        </a>
+        <div id="branch" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Branch</h6>
+            <router-link class="collapse-item" to="/all-branch">All Branch</router-link>
+            <router-link class="collapse-item" to="/add-branch">Add Branch</router-link>
+          </div>
+        </div>
+      </li>
+      {{-- Branch Menu --}}
       {{-- Employee Menu --}}
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"

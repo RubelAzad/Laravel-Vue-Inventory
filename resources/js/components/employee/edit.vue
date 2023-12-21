@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <div class="row">
@@ -12,10 +13,10 @@
                 <div class="col-lg-12">
                   <div class="login-form">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Add Employee</h1>
+                      <h1 class="h4 text-gray-900 mb-4">Edit Employee</h1>
                     </div>
                     <div class="card-body">
-                    <form class="user" @submit.prevent="employeeInsert" enctype="multipart/form-data">
+                    <form class="user" @submit.prevent="employeeUpdate" enctype="multipart/form-data">
                       <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
@@ -66,13 +67,11 @@
                                 <input type="text" class="form-control" id="phoneNumber" placeholder="Enter Your Phone Number" v-model="form.phone">
                                 <small class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</small>
                             </div>
-
                             <div class="col-md-6">
                                 <label for="exampleFormControlSelect1">Branch Name</label>
                                 <select class="form-control" id="exampleFormControlSelect1" v-model="form.branch_id">
                                     <option :value="branch.id" v-for="branch in branches" :key="branch.id">{{ branch.branch_name }}</option>
                                 </select>
-
                             </div>
                         </div>
                       </div>
@@ -107,7 +106,6 @@
                       </div>
 
 
-
                       <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
@@ -131,7 +129,7 @@
                             </div>
                             <div class="col-md-6">
                                 <img
-                                    :src="form.photo"
+                                    :src="form.newPhoto"
                                     style="
                                         height: 40px;
                                         width: 40px;
@@ -144,7 +142,7 @@
 
 
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-block">Update</button>
                       </div>
                     </form>
                 </div>
@@ -166,74 +164,69 @@ export default {
     created(){
         if(!User.loggedIn()){
             this.$router.push({name:'/'})
+
+
         }
+        let id = this.$route.params.id
+        axios.get('/api/employee/'+id)
+        .then(({data}) => (this.form =data))
+        .catch()
         axios.get('/api/branch/').then(({data})=>(this.branches=data));
         axios.get('/api/department/').then(({data})=>(this.departments=data));
         axios.get('/api/designation/').then(({data})=>(this.designations=data));
         axios.get('/api/shift/').then(({data})=>(this.shifts=data));
-    },
-    computed: {
 
-        paginatedEmployees() {
-            const startIndex = (this.currentPage - 1) * this.pageSize;
-            return this.filteredEmployees.slice(startIndex, startIndex + this.pageSize);
-        },
-        totalPages() {
-            return Math.ceil(this.filteredEmployees.length / this.pageSize);
-        },
     },
     data() {
         return {
-            branches:[],
-            departments:[],
-            designations:[],
-            shifts:[],
             form: {
-                name: null,
-                email: null,
-                address: null,
-                salary: null,
-                address: null,
-                joining_date: null,
-                nid: null,
-                phone: null,
-                photo: null,
-                branch_id:null,
-                department_id:null,
-                designation_id:null,
-                shift_id:null,
+                name: '',
+                email: '',
+                address: '',
+                salary: '',
+                address: '',
+                joining_date: '',
+                nid: '',
+                phone: '',
+                photo: '',
+                newPhoto: '',
+                branch_id:'',
+                department_id:'',
+                designation_id:'',
+                shift_id:'',
             },
-            errors:{
-
-            }
+            errors:{},
+            branches:{},
+            departments:{},
+            designations:{},
+            shifts:{},
         };
     },
+
     methods: {
         onFileSelected(event){
             let file = event.target.files[0];
-            if(file.size > 1048770){
-                Notification.warning('Image size Less then 1 MB');
+            if (file.size > 1048770) {
+            Notification.image_validation()
             }else{
-                let file = event.target.files[0];
-                reader.onload =event =>{
-                    this.form.photo = event.target.result
-                    console.log(event.target.result);
-                }
-                reader.readAsDataURL(file);
+            let reader = new FileReader();
+            reader.onload = event =>{
+                this.form.newPhoto = event.target.result
 
+            };
+            reader.readAsDataURL(file);
             }
-        },
-        employeeInsert() {
-            axios.post("/api/employee", this.form)
-                .then(() => {
 
-                    Notification.success('Employee Save in successfully');
-                    this.$router.push({ name: 'all-employee' });
-                })
-                .catch((error) => {
-                    this.errors = error.response.data.errors;
-                });
         },
+        employeeUpdate(){
+            let id = this.$route.params.id
+            axios.patch('/api/employee/'+id,this.form)
+            .then(() => {
+                this.$router.push({ name: 'all-employee'})
+                Notification.success('Updated Successfully')
+            })
+            .catch(error =>this.errors = error.response.data.errors)
+            },
 
 
     },
