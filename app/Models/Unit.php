@@ -11,3 +11,4 @@ class Unit extends Model
 
     protected $fillable = ['unit_name','unit_code','unit_op_value','status','created_by','updated_by'];
 }
+

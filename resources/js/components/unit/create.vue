@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label>Unit Code</label>
+                                <label>Unit Code </label>
                                 <input type="text" class="form-control" id="unit_code" placeholder="Enter unit Percent" v-model="form.unit_code">
                                 <small class="text-danger" v-if="errors.unit_code">{{ errors.unit_code[0] }}</small>
                             </div>

@@ -2,7 +2,7 @@
 <template>
     <div>
         <div class="row">
-            <router-link to="/all-unit" class="btn btn-primary">All Unit</router-link>
+            <router-link to="/all-unit" class="btn btn-primary">All Unit </router-link>
         </div>
     </div>
     <div class="row justify-content-center">

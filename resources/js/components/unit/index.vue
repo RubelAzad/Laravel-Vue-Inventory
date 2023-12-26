@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <router-link to="/add-unit" class="btn btn-primary">Add unit</router-link>
+            <router-link to="/add-unit" class="btn btn-primary">Add unit </router-link>
         </div>
     </div>
     <div class="row justify-content-center">

@@ -19,6 +19,7 @@ class UnitController extends Controller
         return response()->json($units);
     }
 
+    
 
     /**
      * Store a newly created resource in storage.
