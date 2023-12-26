@@ -155,6 +155,35 @@
         </div>
       </li>
        {{-- Supplier Menu --}}
+       {{-- Supplier Menu --}}
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#setting"
+          aria-expanded="true" aria-controls="setting">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Setting</span>
+        </a>
+        <div id="setting" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <router-link class="collapse-item" to="all-brand">Brand List</router-link>
+            <router-link class="collapse-item" to="add-brand">Add Brand</router-link>
+
+            <router-link class="collapse-item" to="all-unit">Unit List</router-link>
+            <router-link class="collapse-item" to="add-unit">Add Unit</router-link>
+
+            <router-link class="collapse-item" to="all-tax">Tax List</router-link>
+            <router-link class="collapse-item" to="add-tax">Add Tax</router-link>
+
+            <router-link class="collapse-item" to="all-vat">Vat List</router-link>
+            <router-link class="collapse-item" to="add-vat">Add Vat</router-link>
+
+            <router-link class="collapse-item" to="all-warehouse">Warehouse List</router-link>
+            <router-link class="collapse-item" to="add-warehouse">Add Warehouse</router-link>
+
+          </div>
+        </div>
+
+      </li>
+       {{-- Supplier Menu --}}
       <li class="nav-item">
         <a class="nav-link" href="forms.html">
           <i class="fab fa-fw fa-wpforms"></i>
