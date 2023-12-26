@@ -36,6 +36,18 @@ import EditSupplierComponent from "./components/supplier/edit.vue";
 import AddCategoryComponent from "./components/category/create.vue";
 import ListCategoryComponent from "./components/category/index.vue";
 import EditCategoryComponent from "./components/category/edit.vue";
+//Brand component
+import AddBrandComponent from "./components/brand/create.vue";
+import ListBrandComponent from "./components/brand/index.vue";
+import EditBrandComponent from "./components/brand/edit.vue";
+//Tax component
+import AddTaxComponent from "./components/tax/create.vue";
+import ListTaxComponent from "./components/tax/index.vue";
+import EditTaxComponent from "./components/tax/edit.vue";
+//Vat component
+import AddVatComponent from "./components/vat/create.vue";
+import ListVatComponent from "./components/vat/index.vue";
+import EditVatComponent from "./components/vat/edit.vue";
 
 
 
@@ -80,5 +92,17 @@ export const routes = [
     { path: '/add-category', component:AddCategoryComponent,name:'add-category' },
     { path: '/all-category', component:ListCategoryComponent,name:'all-category' },
     { path: '/edit-category/:id', component:EditCategoryComponent,name:'edit-category' },
+    //Brand
+    { path: '/add-brand', component:AddBrandComponent,name:'add-brand' },
+    { path: '/all-brand', component:ListBrandComponent,name:'all-brand' },
+    { path: '/edit-brand/:id', component:EditBrandComponent,name:'edit-brand' },
+    //Tax
+    { path: '/add-tax', component:AddTaxComponent,name:'add-tax' },
+    { path: '/all-tax', component:ListTaxComponent,name:'all-tax' },
+    { path: '/edit-tax/:id', component:EditTaxComponent,name:'edit-tax' },
+    //Vat
+    { path: '/add-vat', component:AddVatComponent,name:'add-vat' },
+    { path: '/all-vat', component:ListVatComponent,name:'all-vat' },
+    { path: '/edit-vat/:id', component:EditVatComponent,name:'edit-vat' },
 
   ]

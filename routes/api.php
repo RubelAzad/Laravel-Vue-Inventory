@@ -36,4 +36,16 @@ Route::apiResource('/shift','App\Http\Controllers\Api\ShiftController');
 Route::apiResource('/supplier','App\Http\Controllers\Api\SupplierController');
 //Category
 Route::apiResource('/category','App\Http\Controllers\Api\CategoryController');
+//Brand
+Route::apiResource('/brand','App\Http\Controllers\Api\BrandController');
+//Tax
+Route::apiResource('/tax','App\Http\Controllers\Api\TaxController');
+//Vat
+Route::apiResource('/vat','App\Http\Controllers\Api\VatController');
+//Unit
+Route::apiResource('/unit','App\Http\Controllers\Api\UnitController');
+//Warehouse
+Route::apiResource('/warehouse','App\Http\Controllers\Api\WarehouseController');
+//Product
+Route::apiResource('/product','App\Http\Controllers\Api\ProductController');
 
