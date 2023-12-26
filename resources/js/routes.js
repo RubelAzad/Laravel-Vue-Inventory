@@ -52,6 +52,10 @@ import EditVatComponent from "./components/vat/edit.vue";
 import AddUnitComponent from "./components/unit/create.vue";
 import ListUnitComponent from "./components/unit/index.vue";
 import EditUnitComponent from "./components/unit/edit.vue";
+//Warehouse component
+import AddWarehouseComponent from "./components/warehouse/create.vue";
+import ListWarehouseComponent from "./components/warehouse/index.vue";
+import EditWarehouseComponent from "./components/warehouse/edit.vue";
 
 
 
@@ -112,6 +116,10 @@ export const routes = [
     { path: '/add-unit', component:AddUnitComponent,name:'add-unit' },
     { path: '/all-unit', component:ListUnitComponent,name:'all-unit' },
     { path: '/edit-unit/:id', component:EditUnitComponent,name:'edit-unit' },
-    
+    //Warehouse
+    { path: '/add-warehouse', component:AddWarehouseComponent,name:'add-warehouse' },
+    { path: '/all-warehouse', component:ListWarehouseComponent,name:'all-warehouse' },
+    { path: '/edit-warehouse/:id', component:EditWarehouseComponent,name:'edit-warehouse' },
+
 
   ]
