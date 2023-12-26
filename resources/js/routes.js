@@ -48,6 +48,10 @@ import EditTaxComponent from "./components/tax/edit.vue";
 import AddVatComponent from "./components/vat/create.vue";
 import ListVatComponent from "./components/vat/index.vue";
 import EditVatComponent from "./components/vat/edit.vue";
+//Unit component
+import AddUnitComponent from "./components/unit/create.vue";
+import ListUnitComponent from "./components/unit/index.vue";
+import EditUnitComponent from "./components/unit/edit.vue";
 
 
 
@@ -104,5 +108,10 @@ export const routes = [
     { path: '/add-vat', component:AddVatComponent,name:'add-vat' },
     { path: '/all-vat', component:ListVatComponent,name:'all-vat' },
     { path: '/edit-vat/:id', component:EditVatComponent,name:'edit-vat' },
+    //Unit
+    { path: '/add-unit', component:AddUnitComponent,name:'add-unit' },
+    { path: '/all-unit', component:ListUnitComponent,name:'all-unit' },
+    { path: '/edit-unit/:id', component:EditUnitComponent,name:'edit-unit' },
+    
 
   ]
