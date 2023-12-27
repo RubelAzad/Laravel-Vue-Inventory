@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { routes } from "./routes";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import VueMultiselect from 'vue-multiselect';
 
 //import user class
 

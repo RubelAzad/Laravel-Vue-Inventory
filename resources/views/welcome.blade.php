@@ -139,7 +139,7 @@
         </div>
       </li>
        {{-- Supplier Menu --}}
-       {{-- Supplier Menu --}}
+       {{-- Category Menu --}}
        <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category"
           aria-expanded="true" aria-controls="category">
@@ -154,7 +154,23 @@
           </div>
         </div>
       </li>
-       {{-- Supplier Menu --}}
+       {{-- Category Menu --}}
+       {{-- Product Menu --}}
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product"
+          aria-expanded="true" aria-controls="product">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Product</span>
+        </a>
+        <div id="product" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Product</h6>
+            <router-link class="collapse-item" to="all-product">All Product</router-link>
+            <router-link class="collapse-item" to="add-product">Add Product</router-link>
+          </div>
+        </div>
+      </li>
+       {{-- Product Menu --}}
        {{-- Supplier Menu --}}
        <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#setting"
