@@ -56,6 +56,10 @@ import EditUnitComponent from "./components/unit/edit.vue";
 import AddWarehouseComponent from "./components/warehouse/create.vue";
 import ListWarehouseComponent from "./components/warehouse/index.vue";
 import EditWarehouseComponent from "./components/warehouse/edit.vue";
+//Product component
+import AddProductComponent from "./components/product/create.vue";
+import ListProductComponent from "./components/product/index.vue";
+import EditProductComponent from "./components/product/edit.vue";
 
 
 
@@ -120,6 +124,10 @@ export const routes = [
     { path: '/add-warehouse', component:AddWarehouseComponent,name:'add-warehouse' },
     { path: '/all-warehouse', component:ListWarehouseComponent,name:'all-warehouse' },
     { path: '/edit-warehouse/:id', component:EditWarehouseComponent,name:'edit-warehouse' },
+    //Product
+    { path: '/add-product', component:AddProductComponent,name:'add-product' },
+    { path: '/all-product', component:ListProductComponent,name:'all-product' },
+    { path: '/edit-product/:id', component:EditProductComponent,name:'edit-product' },
 
 
   ]

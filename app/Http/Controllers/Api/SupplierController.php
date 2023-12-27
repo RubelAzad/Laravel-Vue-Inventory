@@ -12,9 +12,7 @@ class SupplierController extends Controller
 
     public function index(){
         $suppliers = Supplier::all();
-        return response()->json([
-            'suppliers'=>$suppliers
-        ]);
+        return response()->json($suppliers);
     }
     public function store(Request $request){
         $validateData = $request->validate([
