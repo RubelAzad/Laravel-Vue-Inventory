@@ -234,9 +234,6 @@ export default {
 </script>
 
 <style type="text/css">
-    #em_photo{
-        width: 40px;
-        height: 40px;
-    }
+    
 </style>
 

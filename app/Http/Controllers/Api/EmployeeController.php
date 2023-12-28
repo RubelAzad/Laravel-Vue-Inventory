@@ -112,26 +112,26 @@ class EmployeeController extends Controller
                     'updated_by' => $request->updated_by,
                     'photo'=>$image_url,
                 ]);
-            }else{
-                $update=Employee::find($id)->update([
-                    'name' => $request->name,
-                    'department_id' => $request->department_id,
-                    'designation_id' => $request->designation_id,
-                    'branch_id' => $request->branch_id,
-                    'shift_id' => $request->shift_id,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'address' => $request->address,
-                    'salary' => $request->salary,
-                    'nid' => $request->nid,
-                    'joining_date' => $request->joining_date,
-                    'status' => '1',
-                    'created_by' => $request->created_by,
-                    'updated_by' => $request->updated_by,
-                    'photo'=>$request->photo
-                     ]);
-
             }
+
+        }else{
+            $update=Employee::find($id)->update([
+                'name' => $request->name,
+                'department_id' => $request->department_id,
+                'designation_id' => $request->designation_id,
+                'branch_id' => $request->branch_id,
+                'shift_id' => $request->shift_id,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'salary' => $request->salary,
+                'nid' => $request->nid,
+                'joining_date' => $request->joining_date,
+                'status' => '1',
+                'created_by' => $request->created_by,
+                'updated_by' => $request->updated_by,
+                'photo'=>$request->photo
+                 ]);
 
         }
         // $employee = new Employee;

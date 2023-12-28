@@ -10,9 +10,7 @@ use Intervention\Image\Facades\Image;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::all();
-        
-
+        $products = Product::with('category')->get();
         return response()->json([
             'products'=>$products
         ]);
@@ -21,7 +19,6 @@ class ProductController extends Controller
         $validateData = $request->validate([
             'product_name' => 'required|unique:products|max:255',
             'product_code' => 'required|unique:products|max:255',
-
            ]);
 
          if ($request->photo) {
@@ -52,7 +49,12 @@ class ProductController extends Controller
             $product->unit_id = $request->unit_id;
             $product->brand_id = $request->brand_id;
             $product->warehouse_id = $request->warehouse_id;
-            $product->tax_method = '2';
+            $product->discount_product = $request->discount_product;
+            $product->feature_product = $request->feature_product;
+            $product->discount_product_start_date = $request->discount_product_start_date;
+            $product->discount_product_end_date = $request->discount_product_end_date;
+            $product->discount_product_price = $request->discount_product_price;
+            $product->tax_method =  $request->tax_method;
             $product->status = '1';
             $product->created_by = $request->created_by;
             $product->updated_by = $request->updated_by;
@@ -80,7 +82,12 @@ class ProductController extends Controller
             $product->unit_id = $request->unit_id;
             $product->brand_id = $request->brand_id;
             $product->warehouse_id = $request->warehouse_id;
-            $product->tax_method = '2';
+            $product->discount_product = $request->discount_product;
+            $product->feature_product = $request->feature_product;
+            $product->discount_product_start_date = $request->discount_product_start_date;
+            $product->discount_product_end_date = $request->discount_product_end_date;
+            $product->discount_product_price = $request->discount_product_price;
+            $product->tax_method =  $request->tax_method;
             $product->status = '1';
             $product->created_by = $request->created_by;
             $product->updated_by = $request->updated_by;
@@ -107,7 +114,9 @@ class ProductController extends Controller
             if($success){
                 $img=Product::find($id)->first();
                 $image_path=$img->photo;
-                $done=unlink($image_path);
+                if (!empty($image_path) && file_exists($image_path)) {
+                    unlink($image_path);
+                }
                 $update=Product::find($id)->update([
                     'product_name' => $request->product_name,
                     'product_code' => $request->product_code,
@@ -126,39 +135,50 @@ class ProductController extends Controller
                     'unit_id' => $request->unit_id,
                     'brand_id' => $request->brand_id,
                     'warehouse_id' => $request->warehouse_id,
-                    'tax_method' => '2',
+                    'discount_product' => $request->discount_product,
+                    'feature_product' => $request->feature_product,
+                    'discount_product_start_date' => $request->discount_product_start_date,
+                    'discount_product_end_date' => $request->discount_product_end_date,
+                    'discount_product_price' => $request->discount_product_price,
+                    'tax_method' => $request->tax_method,
                     'status' => '1',
                     'created_by' => $request->created_by,
                     'updated_by' => $request->updated_by,
                     'photo'=>$image_url,
                 ]);
-            }else{
-                $update=Product::find($id)->update([
-                    'product_name' => $request->product_name,
-                    'product_code' => $request->product_code,
-                    'category_id' => $request->category_id,
-                    'product_stock' => $request->product_stock,
-                    'product_buying_price' => $request->product_buying_price,
-                    'product_cost_price' => $request->product_cost_price,
-                    'product_selling_price' => $request->product_selling_price,
-                    'product_buying_date' => $request->product_buying_date,
-                    'product_selling_date' => $request->product_selling_date,
-                    'product_note' => $request->product_note,
-                    'product_qty' => $request->product_qty,
-                    'supplier_id' => $request->supplier_id,
-                    'tax_id' => $request->tax_id,
-                    'vat_id' => $request->vat_id,
-                    'unit_id' => $request->unit_id,
-                    'brand_id' => $request->brand_id,
-                    'warehouse_id' => $request->warehouse_id,
-                    'tax_method' => '2',
-                    'status' => '1',
-                    'created_by' => $request->created_by,
-                    'updated_by' => $request->updated_by,
-                    'photo'=>$request->photo
-                     ]);
-
             }
+
+        }else{
+            
+            $update=Product::find($id)->update([
+                'product_name' => $request->product_name,
+                'product_code' => $request->product_code,
+                'category_id' => $request->category_id,
+                'product_stock' => $request->product_stock,
+                'product_buying_price' => $request->product_buying_price,
+                'product_cost_price' => $request->product_cost_price,
+                'product_selling_price' => $request->product_selling_price,
+                'product_buying_date' => $request->product_buying_date,
+                'product_selling_date' => $request->product_selling_date,
+                'product_note' => $request->product_note,
+                'product_qty' => $request->product_qty,
+                'supplier_id' => $request->supplier_id,
+                'tax_id' => $request->tax_id,
+                'vat_id' => $request->vat_id,
+                'unit_id' => $request->unit_id,
+                'brand_id' => $request->brand_id,
+                'warehouse_id' => $request->warehouse_id,
+                'discount_product' => $request->discount_product,
+                'feature_product' => $request->feature_product,
+                'discount_product_start_date' => $request->discount_product_start_date,
+                'discount_product_end_date' => $request->discount_product_end_date,
+                'discount_product_price' => $request->discount_product_price,
+                'tax_method' => $request->tax_method,
+                'status' => '1',
+                'created_by' => $request->created_by,
+                'updated_by' => $request->updated_by,
+                'photo'=>$request->photo
+                 ]);
 
         }
     }
