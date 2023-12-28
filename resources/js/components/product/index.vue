@@ -31,24 +31,24 @@
                   <table class="table align-items-center table-flush" id="dataTable">
                     <thead class="thead-light">
                       <tr>
-                        <th>Name</th>
-                        <th>Photo</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Joining Date</th>
-                        <th>Salary</th>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Product Code</th>
+                        <th>category</th>
+                        <th>Product Stock</th>
+                        <th>Sell Price</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
 
                       <tr v-for="product in paginatedproducts" :key="product.id">
-                        <td>{{ product.product_name }}</td>
                         <td><img :src="product.photo" alt="" id="em_photo"></td>
+                        <td>{{ product.product_name }}</td>
                         <td>{{ product.product_code }}</td>
-                        <td>{{ product.product_buying_price }}</td>
+                        <td>{{ product.category?.category_name ?? 'N/A' }}</td>
                         <td>{{ product.product_stock }}</td>
-                        <td>{{ product.category_id }}</td>
+                        <td>{{ product.product_selling_price }}</td>
                         <td>
                             <router-link
                             :to="{name:'edit-product',params:{id:product.id}}"

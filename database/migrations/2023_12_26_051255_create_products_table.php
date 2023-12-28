@@ -40,8 +40,13 @@ return new class extends Migration
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->unsignedBigInteger('warehouse_id')->nullable();
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
-            $table->enum('tax_method',['1','2'])->default('2')->comment("1=Exclude,2=Include");
-            $table->enum('status',['1','2'])->default('1')->comment="1=Active,2=Inactive";
+            $table->enum('discount_product',['1','2'])->default('2')->comment("1=Yes,2=No")->nullable();
+            $table->string('discount_product_start_date')->nullable();
+            $table->string('discount_product_end_date')->nullable();
+            $table->string('discount_product_price')->nullable();
+            $table->enum('feature_product',['1','2'])->default('2')->comment("1=Yes,2=No")->nullable();
+            $table->enum('tax_method',['1','2'])->default('2')->comment("1=Exclude,2=Include")->nullable();
+            $table->enum('status',['1','2'])->default('1')->comment("1=Active,2=Inactive");
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

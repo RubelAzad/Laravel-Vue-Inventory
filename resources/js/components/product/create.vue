@@ -42,10 +42,10 @@
                                     :close-on-select="true"
                                     :clear-on-select="false"
                                     placeholder="Select one"
-                                    label="name"  
-                                    track-by="id"
-                                    :select-label="'id'"  
+                                    label="name"
+                                    track-by="id"  :select-label="'id'"
                                 />
+                                <small class="text-danger" v-if="errors.category_id">{{ errors.category_id[0] }}</small>
                             </div>
                             <div class="col-md-6">
                                 <label>Brand Name</label>
@@ -59,6 +59,7 @@
                                                 track-by="id"
                                                 :select-label="''"
                                             />
+                                            <small class="text-danger" v-if="errors.brand_id">{{ errors.brand_id[0] }}</small>
                             </div>
                         </div>
                       </div>
@@ -178,11 +179,11 @@
                                                 track-by="id"
                                                 :select-label="''"
                                             />
-                            </div> 
+                            </div>
                             <div class="col-md-6">
                                 <label>Tax method</label>
                                 <VueMultiselect
-                                                v-model="taxMethods.id"
+                                                v-model="form.tax_method"
                                                 :options="taxMethods"
                                                 :close-on-select="true"
                                                 :clear-on-select="false"
@@ -191,13 +192,56 @@
                                                 track-by="id"
                                                 :select-label="''"
                                             />
-                                
+
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="feature_product" v-model="form.feature_product">
+                                    <label class="form-check-label" for="feature_product">Feature Product</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="discount_product" v-model="form.discount_product">
+                                    <label class="form-check-label" for="discount_product">Discount Product</label>
+                                  </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div v-if="form.discount_product">
+
+                                    <label>Discount Amount</label>
+                                <input type="number" class="form-control" id="discount_product_price" aria-describedby="discount_product_price"
+                                placeholder="Discount Amount" v-model="form.discount_product_price">
+
+                                    <!-- Add more input fields as needed -->
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row">
+
+                            <div class="col-md-6">
+                                <div v-if="form.discount_product">
+                                <label>Discount Product Start Date</label>
+                                <input type="date" class="form-control" id="discount_product_start_date" aria-describedby="discount_product_start_date"
+                                placeholder="Enter Product Start Date" v-model="form.discount_product_start_date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div v-if="form.discount_product">
+                                <label>Discount Product End Date</label>
+                                <input type="date" class="form-control" id="discount_product_end_date" aria-describedby="discount_product_end_date"
+                                placeholder="Enter Product End Date" v-model="form.discount_product_end_date">
+                                </div>
                             </div>
                         </div>
                       </div>
 
 
-                      
+
 
 
 
@@ -267,28 +311,28 @@ export default {
         axios.get('/api/category/')
         .then(({ data }) => {
             this.categories = data;
-         
+
             // Update the form data after fetching categories
             this.form.category_id = data.find(category => category.id === this.form.category_id);
         });
         axios.get('/api/brand/')
         .then(({ data }) => {
             this.brands = data;
-         
+
             // Update the form data after fetching categories
             this.form.brand_id = data.find(brand => brand.id === this.form.brand_id);
         });
         axios.get('/api/supplier/')
         .then(({ data }) => {
             this.suppliers = data;
-         
+
             // Update the form data after fetching categories
             this.form.supplier_id = data.find(supplier => supplier.id === this.form.supplier_id);
         });
         axios.get('/api/unit/')
         .then(({ data }) => {
             this.units = data;
-         
+
             // Update the form data after fetching categories
             this.form.unit_id = data.find(unit => unit.id === this.form.unit_id);
         });
@@ -296,25 +340,25 @@ export default {
         .then(({ data }) => {
             console.log(data)
             this.warehouses = data;
-         
+
             this.form.warehouse_id = data.find(warehouse => warehouse.id === this.form.warehouse_id);
         });
         axios.get('/api/tax/')
         .then(({ data }) => {
             this.taxs = data;
-         
+
             // Update the form data after fetching categories
             this.form.tax_id = data.find(tax => tax.id === this.form.tax_id);
         });
         axios.get('/api/vat/')
         .then(({ data }) => {
             this.vats = data;
-         
+
             // Update the form data after fetching categories
             this.form.vat_id = data.find(vat => vat.id === this.form.vat_id);
         });
-        
-        
+
+
     },
     computed: {
 
@@ -326,69 +370,69 @@ export default {
             return Math.ceil(this.filteredproducts.length / this.pageSize);
         },
         formattedCategories() {
-           
+
             return this.categories.map((category) => ({
                 id: category.id,
                 name: category.category_name,
-                
+
             }));
-            
+
         },
         formattedBrands() {
-           
+
            return this.brands.map((brand) => ({
                id: brand.id,
                name: brand.brand_name,
-               
+
            }));
-           
+
        },
         formattedUnits() {
-           
+
            return this.units.map((unit) => ({
                id: unit.id,
                name: unit.unit_name,
-               
+
            }));
-           
+
        },
         formattedSuppliers() {
-           
+
            return this.suppliers.map((supplier) => ({
                id: supplier.id,
                name: supplier.supplier_name,
-               
+
            }));
-           
+
        },
        formattedWarehouses() {
-           
+
            return this.warehouses.map((warehouse) => ({
                id: warehouse.id,
                name: warehouse.warehouse_name,
-               
+
            }));
-           
+
        },
        formattedTaxs() {
-           
+
            return this.taxs.map((tax) => ({
                id: tax.id,
                name: tax.tax_name,
-               
+
            }));
-           
+
        },
        formattedVats() {
-           
+
            return this.vats.map((vat) => ({
                id: vat.id,
                name: vat.vat_name,
-               
+
            }));
-           
+
        },
-      
+
     },
     data() {
         return {
@@ -412,7 +456,7 @@ export default {
                     "id": 2,
                     "name": "Excluded",
                 },
-            
+
             ],
             form: {
                 product_name: null,
@@ -433,6 +477,14 @@ export default {
                 brand_id:null,
                 warehouse_id:null,
                 tax_method:null,
+                discount_product: '', // initial state
+                feature_product: '',
+                discount_product_start_date: '',
+                discount_product_end_date: '',
+                discount_product_price: '',
+                photo: "",
+                newPhoto: "",
+
             },
             errors:{
 
@@ -440,6 +492,20 @@ export default {
         };
     },
     methods: {
+        validateForm() {
+        // Clear previous errors
+        this.errors = {};
+
+        // Perform validation for each field
+        if (!this.form.product_name) {
+            this.errors.product_name = ['Product Name is required'];
+        }
+
+        // Add similar validations for other fields
+
+        // Return true if there are no errors
+        return Object.keys(this.errors).length === 0;
+        },
         onFileSelected(event){
             let file = event.target.files[0];
             if(file.size > 1048770){
@@ -455,15 +521,32 @@ export default {
             }
         },
         productInsert() {
-            axios.post("/api/product", this.form)
-                .then(() => {
+            if (this.validateForm()) {
+            // Validation passed, proceed with form submission
 
-                    Notification.success('product Save in successfully');
-                    this.$router.push({ name: 'all-product' });
-                })
-                .catch((error) => {
-                    this.errors = error.response.data.errors;
-                });
+            // Your existing code for submitting the form
+           // console.log(this.form);
+                    this.form.category_id = this.form.category_id?.id ? this.form.category_id.id: null;
+                    this.form.supplier_id = this.form.supplier_id?.id ?this.form.supplier_id.id:null;
+                    this.form.tax_id = this.form.tax_id?.id? this.form.tax_id.id:null;
+                    this.form.vat_id = this.form.vat_id?.id?this.form.vat_id.id:null;
+                    this.form.unit_id = this.form.unit_id?.id?this.form.unit_id.id:null;
+                    this.form.brand_id = this.form.brand_id?.id?this.form.brand_id.id:null;
+                    this.form.warehouse_id = this.form.warehouse_id?.id?this.form.warehouse_id.id:null;
+                    this.form.tax_method = this.form.tax_method?.id?this.form.tax_method.id:null;
+
+                    axios.post("/api/product", this.form)
+                        .then(() => {
+
+                            Notification.success('Product Save in successfully');
+                            this.$router.push({ name: 'all-product' });
+                        })
+                        .catch((error) => {
+                            this.errors = error.response.data.errors;
+                        });
+
+            }
+
         },
 
 
