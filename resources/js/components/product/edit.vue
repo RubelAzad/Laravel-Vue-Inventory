@@ -40,7 +40,7 @@
                                                       :close-on-select="true"
                                                       :clear-on-select="false"
                                                       placeholder="Select one"
-                                                      label="name"
+                                                      label="category_name"
                                                       track-by="id"
                                                       :select-label="''"
                                                   />
@@ -54,7 +54,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="brand_name"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -114,7 +114,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="supplier_name"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -127,7 +127,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="unit_name"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -144,7 +144,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="warehouse_name"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -157,7 +157,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="tax_name"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -174,7 +174,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="vat_name"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -187,7 +187,7 @@
                                                                   :close-on-select="true"
                                                                   :clear-on-select="false"
                                                                   placeholder="Select one"
-                                                                  label="name"
+                                                                  label="tax_method"
                                                                   track-by="id"
                                                                   :select-label="''"
                                                               />
@@ -415,7 +415,7 @@ export default {
 
             return this.categories.map((category) => ({
                 id: category.id,
-                name: category.category_name,
+                category_name: category.category_name,
 
             }));
 
@@ -424,7 +424,7 @@ export default {
 
            return this.brands.map((brand) => ({
                id: brand.id,
-               name: brand.brand_name,
+               brand_name: brand.brand_name,
 
            }));
 
@@ -433,7 +433,7 @@ export default {
 
            return this.units.map((unit) => ({
                id: unit.id,
-               name: unit.unit_name,
+               unit_name: unit.unit_name,
 
            }));
 
@@ -442,7 +442,7 @@ export default {
 
            return this.suppliers.map((supplier) => ({
                id: supplier.id,
-               name: supplier.supplier_name,
+               supplier_name: supplier.supplier_name,
 
            }));
 
@@ -451,7 +451,7 @@ export default {
 
            return this.warehouses.map((warehouse) => ({
                id: warehouse.id,
-               name: warehouse.warehouse_name,
+               warehouse_name: warehouse.warehouse_name,
 
            }));
 
@@ -460,7 +460,7 @@ export default {
 
            return this.taxs.map((tax) => ({
                id: tax.id,
-               name: tax.tax_name,
+               tax_name: tax.tax_name,
 
            }));
 
@@ -469,7 +469,7 @@ export default {
 
            return this.vats.map((vat) => ({
                id: vat.id,
-               name: vat.vat_name,
+               vat_name: vat.vat_name,
 
            }));
 
@@ -483,15 +483,15 @@ export default {
             taxMethods:[
                 {
                     "id": "",
-                    "name": "Select Your Value",
+                    "tax_method": "Select Your Value",
                 },
                 {
                     "id": 1,
-                    "name": "Included",
+                    "tax_method": "Included",
                 },
                 {
                     "id": 2,
-                    "name": "Excluded",
+                    "tax_method": "Excluded",
                 },
 
             ],
