@@ -41,7 +41,8 @@
                                                       :clear-on-select="false"
                                                       placeholder="Select one"
                                                       label="name"
-                                                      track-by="id"  :select-label="''"
+                                                      track-by="id"
+                                                      :select-label="''"
                                                   />
                                                   <small class="text-danger" v-if="errors.category_id">{{ errors.category_id[0] }}</small>
                                               </div>
@@ -244,37 +245,35 @@
 
 
                                         <div class="form-group">
-                                          <div class="row">
+                                            <div class="row">
                                               <div class="col-md-6">
-                                                  <input
-                                                      type="file"
-                                                      class="custom-file-input"
-                                                      id="customFile"
-                                                      @change="onFileSelected"
-                                                  />
-                                                  <small
-                                                      class="text-danger"
-                                                      v-if="errors.photo"
-                                                  >
-                                                      {{ errors.photo[0] }}
-                                                  </small>
-                                                  <label
-                                                      class="custom-file-label"
-                                                      for="customFile"
-                                                      >Choose file</label
-                                                  >
+                                                <input
+                                                  type="file"
+                                                  class="custom-file-input"
+                                                  id="customFile"
+                                                  @change="onFileSelected"
+                                                />
+                                                <small class="text-danger" v-if="errors.photo">
+                                                  {{ errors.photo[0] }}
+                                                </small>
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
                                               </div>
                                               <div class="col-md-6">
-                                                  <img
-                                                      :src="form.newPhoto"
-                                                      style="
-                                                          height: 40px;
-                                                          width: 40px;
-                                                      "
-                                                  />
+                                                <img
+                                                  v-if="form.newPhoto"
+                                                  :src="form.newPhoto"
+                                                  style="height: 40px; width: 40px;"
+                                                />
                                               </div>
-                                          </div>
-                                      </div>
+                                              <div class="col-md-6">
+                                                <img
+                                                  v-if="form.photo"
+                                                  :src="'/' + form.photo"
+                                                  style="height: 40px; width: 40px;"
+                                                />
+                                              </div>
+                                            </div>
+                                        </div>
 
 
 
@@ -558,6 +557,7 @@ export default {
                 .catch((error) => (this.errors = error.response.data.errors));
         },
         onFileSelected(event) {
+
             let file = event.target.files[0];
             if (file.size > 1048770) {
                 Notification.error("Image must be less than 1 MB");
@@ -574,3 +574,7 @@ export default {
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style>
+
+
+</style>

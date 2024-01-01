@@ -48,4 +48,6 @@ Route::apiResource('/unit','App\Http\Controllers\Api\UnitController');
 Route::apiResource('/warehouse','App\Http\Controllers\Api\WarehouseController');
 //Product
 Route::apiResource('/product','App\Http\Controllers\Api\ProductController');
+//Expense
+Route::apiResource('/expense','App\Http\Controllers\Api\ExpenseController');
 

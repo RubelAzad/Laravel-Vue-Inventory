@@ -60,6 +60,10 @@ import EditWarehouseComponent from "./components/warehouse/edit.vue";
 import AddProductComponent from "./components/product/create.vue";
 import ListProductComponent from "./components/product/index.vue";
 import EditProductComponent from "./components/product/edit.vue";
+//Product component
+import AddExpenseComponent from "./components/product/create.vue";
+import ListExpenseComponent from "./components/product/index.vue";
+import EditExpenseComponent from "./components/product/edit.vue";
 
 
 
@@ -89,6 +93,12 @@ export const routes = [
     { path: '/add-branch', component:AddBranchComponent,name:'add-branch' },
     { path: '/all-branch', component:ListBranchComponent,name:'all-branch' },
     { path: '/edit-branch/:id', component:EditBranchComponent,name:'edit-branch' },
+
+
+    { path: '/add-supplier', component:AddSupplierComponent,name:'add-supplier' },
+    { path: '/all-supplier', component:ListSupplierComponent,name:'all-supplier' },
+    { path: '/edit-supplier/:id', component:EditSupplierComponent,name:'edit-supplier' },
+
 
     //Shift
     { path: '/add-shift', component:AddShiftComponent,name:'add-shift' },
@@ -128,6 +138,11 @@ export const routes = [
     { path: '/add-product', component:AddProductComponent,name:'add-product' },
     { path: '/all-product', component:ListProductComponent,name:'all-product' },
     { path: '/edit-product/:id', component:EditProductComponent,name:'edit-product' },
+
+    //Expense
+    { path: '/add-expense', component:AddExpenseComponent,name:'add-expense' },
+    { path: '/all-expense', component:ListExpenseComponent,name:'all-expense' },
+    { path: '/edit-expense/:id', component:EditExpenseComponent,name:'edit-expense' },
 
 
   ]

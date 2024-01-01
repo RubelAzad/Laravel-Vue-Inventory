@@ -133,8 +133,8 @@
         <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Supplier</h6>
-            <router-link class="collapse-item" to="all-supplier">All Supplier</router-link>
-            <router-link class="collapse-item" to="add-supplier">Add Supplier</router-link>
+            <router-link class="collapse-item" to="/all-supplier">All Supplier</router-link>
+            <router-link class="collapse-item" to="/add-supplier">Add Supplier</router-link>
           </div>
         </div>
       </li>
@@ -149,8 +149,8 @@
         <div id="category" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Category</h6>
-            <router-link class="collapse-item" to="all-category">All Category</router-link>
-            <router-link class="collapse-item" to="add-category">Add Category</router-link>
+            <router-link class="collapse-item" to="/all-category">All Category</router-link>
+            <router-link class="collapse-item" to="/add-category">Add Category</router-link>
           </div>
         </div>
       </li>
@@ -165,8 +165,24 @@
         <div id="product" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product</h6>
-            <router-link class="collapse-item" to="all-product">All Product</router-link>
-            <router-link class="collapse-item" to="add-product">Add Product</router-link>
+            <router-link class="collapse-item" to="/all-product">All Product</router-link>
+            <router-link class="collapse-item" to="/add-product">Add Product</router-link>
+          </div>
+        </div>
+      </li>
+       {{-- Product Menu --}}
+       {{-- Product Menu --}}
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product"
+          aria-expanded="true" aria-controls="product">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Expense</span>
+        </a>
+        <div id="product" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Expense</h6>
+            <router-link class="collapse-item" to="/all-expense">All Expense</router-link>
+            <router-link class="collapse-item" to="/add-expense">Add Expense</router-link>
           </div>
         </div>
       </li>
@@ -180,20 +196,20 @@
         </a>
         <div id="setting" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <router-link class="collapse-item" to="all-brand">Brand List</router-link>
-            <router-link class="collapse-item" to="add-brand">Add Brand</router-link>
+            <router-link class="collapse-item" to="/all-brand">Brand List</router-link>
+            <router-link class="collapse-item" to="/add-brand">Add Brand</router-link>
 
-            <router-link class="collapse-item" to="all-unit">Unit List</router-link>
-            <router-link class="collapse-item" to="add-unit">Add Unit</router-link>
+            <router-link class="collapse-item" to="/all-unit">Unit List</router-link>
+            <router-link class="collapse-item" to="/add-unit">Add Unit</router-link>
 
-            <router-link class="collapse-item" to="all-tax">Tax List</router-link>
-            <router-link class="collapse-item" to="add-tax">Add Tax</router-link>
+            <router-link class="collapse-item" to="/all-tax">Tax List</router-link>
+            <router-link class="collapse-item" to="/add-tax">Add Tax</router-link>
 
-            <router-link class="collapse-item" to="all-vat">Vat List</router-link>
-            <router-link class="collapse-item" to="add-vat">Add Vat</router-link>
+            <router-link class="collapse-item" to="/all-vat">Vat List</router-link>
+            <router-link class="collapse-item" to="/add-vat">Add Vat</router-link>
 
-            <router-link class="collapse-item" to="all-warehouse">Warehouse List</router-link>
-            <router-link class="collapse-item" to="add-warehouse">Add Warehouse</router-link>
+            <router-link class="collapse-item" to="/all-warehouse">Warehouse List</router-link>
+            <router-link class="collapse-item" to="/add-warehouse">Add Warehouse</router-link>
 
           </div>
         </div>

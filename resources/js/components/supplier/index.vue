@@ -42,7 +42,7 @@
                     </thead>
                     <tbody>
 
-                      <tr v-for="supplier in paginatedsuppliers" :key="supplier.id">
+                      <tr v-for="supplier in paginatedSuppliers" :key="supplier.id">
                         <td>{{ supplier.supplier_name }}</td>
                         <td><img :src="supplier.photo" alt="" id="em_photo"></td>
                         <td>{{ supplier.supplier_email }}</td>
@@ -116,30 +116,31 @@ export default {
         };
     },
     computed: {
-        filteredsuppliers() {
+        filteredSuppliers() {
             const searchTermLower = this.searchTerm.toLowerCase();
             return this.suppliers.filter(supplier => {
+                console.log(this.suppliers)
                 return (
                     (supplier.supplier_name && supplier.supplier_name.toLowerCase().includes(searchTermLower)) ||
                     (supplier.supplier_email && supplier.supplier_email.toLowerCase().includes(searchTermLower))||
                     (supplier.supplier_phone && supplier.supplier_phone.toLowerCase().includes(searchTermLower))
-
                 );
             });
         },
-        paginatedsuppliers() {
+        paginatedSuppliers() {
             const startIndex = (this.currentPage - 1) * this.pageSize;
-            return this.filteredsuppliers.slice(startIndex, startIndex + this.pageSize);
+            return this.filteredSuppliers.slice(startIndex, startIndex + this.pageSize);
         },
         totalPages() {
-            return Math.ceil(this.filteredsuppliers.length / this.pageSize);
+            return Math.ceil(this.filteredSuppliers.length / this.pageSize);
         },
     },
     methods: {
         allsupplier() {
             axios.get('/api/supplier')
                 .then(({ data }) => {
-                    this.suppliers = data.suppliers;
+                    console.log(data)
+                    this.suppliers = data;
                     this.totalItems = data.length;
                 })
                 .catch((error) => {
