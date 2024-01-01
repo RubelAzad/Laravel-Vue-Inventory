@@ -173,12 +173,12 @@
        {{-- Product Menu --}}
        {{-- Product Menu --}}
        <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product"
-          aria-expanded="true" aria-controls="product">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expense"
+          aria-expanded="true" aria-controls="expense">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Expense</span>
         </a>
-        <div id="product" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="expense" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Expense</h6>
             <router-link class="collapse-item" to="/all-expense">All Expense</router-link>
